@@ -1,0 +1,235 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.fabrefrederic</groupId>
+		<artifactId>weatherStation-maven</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../weatherStation-maven</relativePath>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.fabrefrederic.weatherStation</groupId>
+	<artifactId>weatherStation-integrationTest</artifactId>
+	<name>${project.artifactId}</name>
+
+	<properties>
+		<docker.maven.plugin.rhuss-version>0.13.6</docker.maven.plugin.rhuss-version>
+		<maven-failsafe-plugin-version>2.18.1</maven-failsafe-plugin-version>
+		<postgresql-version>9.1-901.jdbc4</postgresql-version>
+		<junit-version>4.12</junit-version>
+		<spring-version>4.2.1.RELEASE</spring-version>
+		<log4j-version>1.2.17</log4j-version>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.fabrefrederic.weatherStation</groupId>
+			<artifactId>weatherStation-business</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fabrefrederic.weatherStation</groupId>
+			<artifactId>weatherStation-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>postgresql-it</id>
+			<properties>
+				<postgresql.sql.dir>${project.basedir}/src/test/resources/com/fabrefrederic/integrationTest/postgresql/sql</postgresql.sql.dir>
+				<postgresql.configFile>${project.basedir}/src/test/resources/com/fabrefrederic/integrationTest/postgresql/model.properties</postgresql.configFile>
+			</properties>
+			<build>
+				<plugins>
+					<!-- Documentation : -->
+					<!-- https://github.com/rhuss/docker-maven-plugin/blob/master/doc/manual.md -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>properties-maven-plugin</artifactId>
+						<version>1.0-alpha-2</version>
+						<executions>
+							<execution>
+								<phase>initialize</phase>
+								<goals>
+									<goal>read-project-properties</goal>
+								</goals>
+								<configuration>
+									<files>
+										<file>${postgresql.configFile}</file>
+									</files>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.jolokia</groupId>
+						<artifactId>docker-maven-plugin</artifactId>
+						<version>${docker.maven.plugin.rhuss-version}</version>
+						<configuration>
+							<images>
+								<image>
+									<name>postgresql_it</name>
+									<run>
+										<!-- Assign dynamically mapped ports to maven variables (which can be reused in integration tests) -->
+										<ports>
+											<port>jdbc.url.port:5432</port>
+										</ports>
+										<wait>
+											<log>database system is ready to accept connections</log>
+											<time>5000</time>
+										</wait>
+									</run>
+								</image>
+							</images>
+							<dockerHost>tcp://0.0.0.0:4243</dockerHost>
+						</configuration>
+
+						<!-- Hooking into the lifecycle -->
+						<executions>
+							<execution>
+								<id>start-docker-container</id>
+								<phase>process-test-resources</phase>
+								<goals>
+									<goal>stop</goal>
+									<goal>remove</goal>
+									<goal>build</goal>
+									<goal>start</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-docker-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>stop</goal>
+									<goal>remove</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>sql-maven-plugin</artifactId>
+						<version>1.5</version>
+						<dependencies>
+							<dependency>
+								<groupId>postgresql</groupId>
+								<artifactId>postgresql</artifactId>
+								<version>${postgresql-version}</version>
+							</dependency>
+						</dependencies>
+						<executions>
+
+							<execution>
+								<id>create-db</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<driver>${jdbc.driverClassName}</driver>
+									<url>${jdbc.url}:${jdbc.url.port}</url>
+									<username>${jdbc.username}</username>
+									<password>${jdbc.password}</password>
+									<autocommit>true</autocommit>
+									<sqlCommand>create database ${jdbc.url.database}</sqlCommand>
+								</configuration>
+							</execution>
+
+							<execution>
+								<id>pre-integration-test-sql</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<driver>${jdbc.driverClassName}</driver>
+									<url>${jdbc.url}:${jdbc.url.port}/${jdbc.url.database}</url>
+									<username>${jdbc.username}</username>
+									<password>${jdbc.password}</password>
+									<srcFiles>
+										<srcFile>${postgresql.sql.dir}/sequenceCreation.sql</srcFile>
+										<srcFile>${postgresql.sql.dir}/tableCreation.sql</srcFile>
+										<srcFile>${postgresql.sql.dir}/populate.sql</srcFile>
+									</srcFiles>
+								</configuration>
+							</execution>
+
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-failsafe-plugin</artifactId>
+						<version>${maven-failsafe-plugin-version}</version>
+						<executions>
+							<execution>
+								<id>integration-tests-postgresql</id>
+								<goals>
+									<goal>integration-test</goal>
+									<goal>verify</goal>
+								</goals>
+								<configuration>
+									<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+									<argLine>-XX:MaxPermSize=256m</argLine>
+									<systemPropertyVariables>
+									</systemPropertyVariables>
+									<includes>
+										<include>**/IT*.java</include>
+									</includes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+		</profile>
+
+	</profiles>
+
+</project>
