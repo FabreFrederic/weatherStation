@@ -1,10 +1,10 @@
 package com.fabrefrederic.service.impl;
 
+import com.fabrefrederic.service.TemperatureReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fabrefrederic.business.TemperatureReading;
 import com.fabrefrederic.dao.TemperatureReadingDao;
-import com.fabrefrederic.service.TemperatureReadingService;
 
 public class TemperatureReadingServiceImpl implements TemperatureReadingService {
     @Autowired
