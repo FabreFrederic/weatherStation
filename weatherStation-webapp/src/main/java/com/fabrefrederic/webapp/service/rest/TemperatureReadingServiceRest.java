@@ -1,17 +1,20 @@
 package com.fabrefrederic.webapp.service.rest;
 
+import com.fabrefrederic.business.dto.TemperatureReadingDto;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 @Path("/temperatureReading")
 public interface TemperatureReadingServiceRest {
 
-//    @GET
-//    @Path("/getTheLastTemperatureReading")
-//    @Produces("application/xml")
-//    TemperatureReadingDto getTheLastTemperatureReading();
+    @GET
+    @Path("/getTheLastTemperatureReading")
+    @Produces("application/xml")
+    TemperatureReadingDto getTheLastTemperatureReading();
 
     @GET
     @Path("/printmessage/{param}")

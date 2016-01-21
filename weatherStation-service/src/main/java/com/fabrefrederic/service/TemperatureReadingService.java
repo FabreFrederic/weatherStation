@@ -1,6 +1,7 @@
 package com.fabrefrederic.service;
 
 import com.fabrefrederic.business.TemperatureReading;
+import com.fabrefrederic.business.dto.TemperatureReadingDto;
 
 public interface TemperatureReadingService {
 
@@ -10,5 +11,12 @@ public interface TemperatureReadingService {
      * @return the latest temperature reading
      */
     TemperatureReading getTheLastTemperatureReading();
+
+    /**
+     * Save a new temperature reading
+     *
+     * @param temperatureReadingDto the temperature reading to save
+     */
+    void saveTemperatureReading(final TemperatureReadingDto temperatureReadingDto);
 
 }

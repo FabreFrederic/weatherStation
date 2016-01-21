@@ -7,20 +7,10 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.fabrefrederic.weatherStation</groupId>
-	<artifactId>weatherStation-service</artifactId>
+	<artifactId>weatherStation-business-dto</artifactId>
+	<packaging>jar</packaging>
 	<name>${project.artifactId}</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.fabrefrederic.weatherStation</groupId>
-			<artifactId>weatherStation-dao</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fabrefrederic.weatherStation</groupId>
-			<artifactId>weatherStation-business-dto</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 </project>

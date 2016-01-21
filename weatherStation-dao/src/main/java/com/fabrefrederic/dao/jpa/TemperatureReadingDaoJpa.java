@@ -33,8 +33,6 @@ public class TemperatureReadingDaoJpa extends DaoJpa<TemperatureReading> impleme
             queryString.append(TemperatureReading.class.getSimpleName());
             queryString.append(")");
 
-            // SELECT u FROM users u WHERE u.id = (SELECT MAX(u.id) FROM users u)
-
             final TypedQuery<TemperatureReading> query = entityManager.createQuery(queryString.toString(),
                     TemperatureReading.class);
             temperatureReading = query.getSingleResult();

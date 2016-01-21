@@ -1,8 +1,8 @@
 package com.fabrefrederic.dao;
 
-import javax.persistence.NoResultException;
-
 import com.fabrefrederic.business.TemperatureReading;
+
+import javax.persistence.NoResultException;
 
 public interface TemperatureReadingDao {
 

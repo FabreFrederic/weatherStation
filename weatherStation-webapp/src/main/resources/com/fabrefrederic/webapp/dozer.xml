@@ -11,11 +11,11 @@
     </configuration>
 
     <mapping>
-        <class-a>com.fabrefrederic.service.rest.com.fabrefrederic.webapp.dto.SensorDto</class-a>
+        <class-a>com.fabrefrederic.business.dto.SensorDto</class-a>
         <class-b>com.fabrefrederic.business.Sensor</class-b>
     </mapping>
     <mapping>
-        <class-a>com.fabrefrederic.service.rest.com.fabrefrederic.webapp.dto.TemperatureReadingDto</class-a>
+        <class-a>com.fabrefrederic.business.dto.TemperatureReadingDto</class-a>
         <class-b>com.fabrefrederic.business.TemperatureReading</class-b>
     </mapping>
 

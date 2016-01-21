@@ -22,6 +22,11 @@
             <artifactId>weatherStation-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.fabrefrederic.weatherStation</groupId>
+            <artifactId>weatherStation-business-dto</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
@@ -45,12 +50,38 @@
             <artifactId>jstl</artifactId>
             <version>${javax.servlet.jstl-version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jaxrs</artifactId>
-            <version>3.0.14.Final</version>
+            <version>${resteasy-version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-spring</artifactId>
+            <version>${resteasy-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>jaxrs-api</artifactId>
+            <version>${jaxrs-api-version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -70,26 +101,7 @@
                         <artifactId>postgresql</artifactId>
                         <version>${postgresql-version}</version>
                     </dependency>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-web</artifactId>
-                        <version>${spring-version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-webmvc</artifactId>
-                        <version>${spring-version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-jaxrs</artifactId>
-                        <version>${resteasy-version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-spring</artifactId>
-                        <version>${resteasy-version}</version>
-                    </dependency>
+
                     <dependency>
                         <groupId>log4j</groupId>
                         <artifactId>log4j</artifactId>

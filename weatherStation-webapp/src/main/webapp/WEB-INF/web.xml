@@ -5,6 +5,22 @@
 
     <display-name>weatherStation</display-name>
 
+    <listener>
+        <listener-class>
+            org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+        </listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.spring.SpringContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:com/fabrefrederic/webapp/spring/applicationContext-service-rest.xml
+        </param-value>
+    </context-param>
+
     <context-param>
         <param-name>resteasy.resources</param-name>
         <param-value>com.fabrefrederic.webapp.service.rest.impl.TemperatureReadingServiceRestImpl</param-value>
@@ -15,38 +31,15 @@
         <param-value>/rest</param-value>
     </context-param>
 
-    <listener>
-        <listener-class>
-            org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
-        </listener-class>
-    </listener>
-
     <servlet>
         <servlet-name>resteasy-servlet</servlet-name>
         <servlet-class>
             org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
         </servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>resteasy-servlet</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
-
-<!--    <servlet>
-        <servlet-name>weatherStation</servlet-name>
-        <servlet-class>
-            org.springframework.web.servlet.DispatcherServlet
-        </servlet-class>
-        <load-on-startup>1</load-on-startup>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath*:applicationContext-service-rest.xml</param-value>
-        </init-param>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>weatherStation</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>-->
-
 </web-app>
