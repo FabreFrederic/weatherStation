@@ -14,9 +14,18 @@
         <class-a>com.fabrefrederic.business.dto.SensorDto</class-a>
         <class-b>com.fabrefrederic.business.Sensor</class-b>
     </mapping>
+
     <mapping>
         <class-a>com.fabrefrederic.business.dto.TemperatureReadingDto</class-a>
         <class-b>com.fabrefrederic.business.TemperatureReading</class-b>
+        <field>
+            <a>temperature</a>
+            <b>temperature</b>
+        </field>
+        <field>
+            <a>date</a>
+            <b>date</b>
+        </field>
     </mapping>
 
 </mappings>

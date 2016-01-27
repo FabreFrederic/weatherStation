@@ -9,7 +9,7 @@ public class TemperatureReadingDto {
 
     private Double temperature;
     private Date date;
-    private SensorDto sensor;
+    private Integer sensorId;
 
     @XmlElement
     public Double getTemperature() {
@@ -30,11 +30,11 @@ public class TemperatureReadingDto {
     }
 
     @XmlElement
-    public SensorDto getSensor() {
-        return sensor;
+    public Integer getSensorId() {
+        return sensorId;
     }
 
-    public void setSensor(SensorDto sensor) {
-        this.sensor = sensor;
+    public void setSensorId(Integer sensorId) {
+        this.sensorId = sensorId;
     }
 }

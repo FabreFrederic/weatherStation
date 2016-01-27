@@ -12,6 +12,7 @@
 
 	<bean id="temperatureReadingService" class="com.fabrefrederic.service.impl.TemperatureReadingServiceImpl">
 		<property name="temperatureReadingDao" ref="temperatureReadingDaoJpa" />
+        <property name="sensorDao" ref="sensorDaoJpa" />
 	</bean>
 
 </beans>

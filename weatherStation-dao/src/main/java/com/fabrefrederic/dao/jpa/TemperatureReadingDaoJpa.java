@@ -1,14 +1,13 @@
 package com.fabrefrederic.dao.jpa;
 
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
-
 import com.fabrefrederic.business.TemperatureReading;
 import com.fabrefrederic.business.TemperatureReading_;
 import com.fabrefrederic.dao.TemperatureReadingDao;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 @Component("temperatureReadingDaoJpa")
 public class TemperatureReadingDaoJpa extends DaoJpa<TemperatureReading> implements TemperatureReadingDao {

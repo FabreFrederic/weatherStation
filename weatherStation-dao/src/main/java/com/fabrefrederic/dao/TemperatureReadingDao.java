@@ -4,7 +4,7 @@ import com.fabrefrederic.business.TemperatureReading;
 
 import javax.persistence.NoResultException;
 
-public interface TemperatureReadingDao {
+public interface TemperatureReadingDao extends GenericDao<TemperatureReading> {
 
     /**
      * Get the latest temperature reading

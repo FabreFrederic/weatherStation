@@ -1,17 +1,15 @@
 package com.fabrefrederic.dao.jpa;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import com.fabrefrederic.dao.GenericDao;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fabrefrederic.dao.GenericDao;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 /**
  * Generic JPA DAO

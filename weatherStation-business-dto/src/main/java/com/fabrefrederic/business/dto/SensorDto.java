@@ -7,6 +7,7 @@ import java.util.Date;
 @XmlRootElement(name = "sensorDto")
 public class SensorDto {
 
+    private Integer id;
     private String description;
     private Date creationDate;
     private boolean outdoor;
@@ -36,5 +37,14 @@ public class SensorDto {
 
     public void setOutdoor(boolean outdoor) {
         this.outdoor = outdoor;
+    }
+
+    @XmlElement
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
