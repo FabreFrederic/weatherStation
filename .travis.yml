@@ -1,0 +1,4 @@
+language: java
+jdk: oraclejdk7
+sudo: false
+script: cd weatherStation-maven && mvn clean install -DskipTests
