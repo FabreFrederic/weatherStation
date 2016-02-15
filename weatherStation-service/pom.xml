@@ -13,6 +13,19 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+            <version>${junit-version}</version>
+		</dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+            <version>${mockito-all-version}</version>
+        </dependency>
+
+		<dependency>
 			<groupId>com.fabrefrederic.weatherStation</groupId>
 			<artifactId>weatherStation-dao</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
