@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/FabreFrederic/weatherStation.svg?branch=develop)](https://travis-ci.org/FabreFrederic/weatherStation)
+
 # weatherStation
 Weather Station allows you to save temperature reading.
 
