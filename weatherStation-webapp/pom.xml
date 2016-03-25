@@ -50,6 +50,13 @@
             <artifactId>jstl</artifactId>
             <version>${javax.servlet.jstl-version}</version>
         </dependency>
+        <!-- To avoid error "A child container failed during start" -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${javax.servlet.api-version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>

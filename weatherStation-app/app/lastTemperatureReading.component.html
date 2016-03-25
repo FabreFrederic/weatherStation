@@ -1,0 +1,4 @@
+<div *ngIf="lastTemperatureReading">
+    <h2>Current temperature : {{lastTemperatureReading.temperature}}</h2>
+</div>
+<div *ngIf="lastTemperatureReadingError">An error occurred while loading the current temperature</div>

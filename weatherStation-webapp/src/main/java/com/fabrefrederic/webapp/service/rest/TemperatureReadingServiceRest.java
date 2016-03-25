@@ -10,12 +10,12 @@ public interface TemperatureReadingServiceRest {
 
     @GET
     @Path("/getTheLastTemperatureReading")
-    @Produces("application/xml")
+    @Produces("application/json")
     TemperatureReadingDto getTheLastTemperatureReading();
 
     @POST
     @Path("/saveTemperatureReading")
-    @Consumes("application/xml")
+    @Consumes("application/json")
     Response saveTemperatureReading(final TemperatureReadingDto temperatureReading) throws WebApplicationException;
 
     @GET
