@@ -111,7 +111,7 @@
 						<configuration>
 							<images>
 								<image>
-									<name>postgresql_it</name>
+									<name>weatherstation/postgres-it</name>
 									<run>
 										<!-- Assign dynamically mapped ports to maven variables (which can be reused in integration tests) -->
 										<ports>

@@ -1,7 +1,4 @@
-#
-# example Dockerfile for http://docs.docker.com/examples/postgresql_service/
-# maintainer SvenDowideit@docker.com
-#
+# PostgreSQL image
 
 FROM ubuntu
 MAINTAINER fabrefrederic@free.fr

@@ -4,6 +4,8 @@ import com.fabrefrederic.business.dto.TemperatureReadingDto;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.Date;
+import java.util.List;
 
 @Path("/temperatureReading")
 public interface TemperatureReadingServiceRest {
@@ -12,6 +14,12 @@ public interface TemperatureReadingServiceRest {
     @Path("/getTheLastTemperatureReading")
     @Produces("application/json")
     TemperatureReadingDto getTheLastTemperatureReading();
+
+    @GET
+    @Path("/getTemperatureReadingByDay/{date}")
+    @Produces("application/json")
+    List<TemperatureReadingDto> getTemperatureReadingByDay(final @PathParam("date") String date)
+            throws WebApplicationException;
 
     @POST
     @Path("/saveTemperatureReading")
