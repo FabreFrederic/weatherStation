@@ -5,7 +5,7 @@ import 'rxjs/Rx';
 
 @Component({
     selector: 'lastTemperatureReading-detail',
-    templateUrl: 'app/lastTemperatureReading.component.html'
+    templateUrl: 'app/lastTemperatureReading/lastTemperatureReading.component.html'
 })
 
 export class LastTemperatureReadingComponent implements OnInit {
