@@ -3,11 +3,13 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/route
 
 import { HeroService } from './hero.service';
 import { LastTemperatureReadingService } from './lastTemperatureReading/lastTemperatureReading.service';
+import { TemperatureReadingListService } from './temperatureReadingList/temperatureReadingList.service';
 
 import { DashboardComponent } from './dashboard.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
 import { LastTemperatureReadingComponent } from './lastTemperatureReading/lastTemperatureReading.component';
+import { TemperatureReadingListComponent } from './temperatureReadingList/temperatureReadingList.component';
 
 @Component({
   selector: 'my-app',
@@ -17,6 +19,7 @@ import { LastTemperatureReadingComponent } from './lastTemperatureReading/lastTe
       <a [routerLink]="['Dashboard']">Dashboard</a>
       <a [routerLink]="['Heroes']">Heroes</a>
       <a [routerLink]="['LastTemperatureReading']">Current temperature</a>
+      <a [routerLink]="['TemperatureReadingList']">Today temperature reading</a>
     </nav>
     <router-outlet></router-outlet>
   `,
@@ -25,7 +28,8 @@ import { LastTemperatureReadingComponent } from './lastTemperatureReading/lastTe
   providers: [
     ROUTER_PROVIDERS,
     HeroService,
-    LastTemperatureReadingService
+    LastTemperatureReadingService,
+    TemperatureReadingListService
   ]
 })
 
@@ -50,6 +54,11 @@ import { LastTemperatureReadingComponent } from './lastTemperatureReading/lastTe
     path: '/lastTemperatureReading',
     name: 'LastTemperatureReading',
     component: LastTemperatureReadingComponent
+  },
+  {
+    path: '/temperatureReadingList',
+    name: 'TemperatureReadingList',
+    component: TemperatureReadingListComponent
   }
 ])
 export class AppComponent {

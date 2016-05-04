@@ -1,0 +1,8 @@
+<ul class="heroes">
+    <li *ngFor="let temperatureReading of temperatureReadings">
+        <div *ngIf="temperatureReading">
+            <p>{{ temperatureReading.temperatureReading.date | customDateStringPipe:'medium' }}</p>
+            <p>Current temperature : {{temperatureReading.temperatureReading.temperature}}°C</p>
+        </div>
+    </li>
+</ul>
