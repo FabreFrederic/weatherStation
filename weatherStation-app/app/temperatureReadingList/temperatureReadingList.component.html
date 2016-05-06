@@ -1,4 +1,4 @@
-<ul class="heroes">
+<ul class="temperatureReadings">
     <li *ngFor="let temperatureReading of temperatureReadings">
         <div *ngIf="temperatureReading">
             <p>{{ temperatureReading.temperatureReading.date | customDateStringPipe:'medium' }}</p>

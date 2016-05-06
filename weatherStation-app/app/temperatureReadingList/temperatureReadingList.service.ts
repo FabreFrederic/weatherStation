@@ -8,6 +8,7 @@ export class TemperatureReadingListService {
     public http:Http;
     private endpoint:string =
         'http://localhost:8081/weatherStation-webapp/rest/temperatureReading/getTemperatureReadingByDay/';
+
     // TODO : To test, this line must be deleted
     // private date:Date = new Date('2015/10/22');
     private date:Date = new Date();

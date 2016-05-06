@@ -79,6 +79,8 @@ public class TemperatureReadingDaoJpa extends DaoJpa<TemperatureReading> impleme
             queryString.append(":beginDate ");
             queryString.append("AND ");
             queryString.append(":endDate ");
+            queryString.append("order by ");
+            queryString.append(TemperatureReading_.date.getName());
             if (LOGGER.isDebugEnabled()) {
                 LOGGER.debug("Query : " + queryString.toString());
             }
