@@ -1,14 +1,13 @@
 package com.fabrefrederic.dao.jpa;
 
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-
-import org.apache.log4j.Logger;
-import org.springframework.stereotype.Component;
-
 import com.fabrefrederic.business.TemperatureReading;
 import com.fabrefrederic.business.TemperatureReading_;
 import com.fabrefrederic.dao.TemperatureReadingDao;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 @Component("temperatureReadingDaoJpa")
 public class TemperatureReadingDaoJpa extends DaoJpa<TemperatureReading> implements TemperatureReadingDao {
@@ -32,8 +31,6 @@ public class TemperatureReadingDaoJpa extends DaoJpa<TemperatureReading> impleme
             queryString.append(") from ");
             queryString.append(TemperatureReading.class.getSimpleName());
             queryString.append(")");
-
-            // SELECT u FROM users u WHERE u.id = (SELECT MAX(u.id) FROM users u)
 
             final TypedQuery<TemperatureReading> query = entityManager.createQuery(queryString.toString(),
                     TemperatureReading.class);

@@ -1,10 +1,10 @@
 package com.fabrefrederic.dao;
 
-import javax.persistence.NoResultException;
-
 import com.fabrefrederic.business.TemperatureReading;
 
-public interface TemperatureReadingDao {
+import javax.persistence.NoResultException;
+
+public interface TemperatureReadingDao extends GenericDao<TemperatureReading> {
 
     /**
      * Get the latest temperature reading
