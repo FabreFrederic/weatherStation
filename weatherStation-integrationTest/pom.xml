@@ -12,13 +12,13 @@
 	<name>${project.artifactId}</name>
 
 	<properties>
-		<docker.maven.plugin.rhuss-version>0.13.6</docker.maven.plugin.rhuss-version>
-		<maven-failsafe-plugin-version>2.18.1</maven-failsafe-plugin-version>
+		<io.fabric8.docker.maven.plugin-version>0.15.1</io.fabric8.docker.maven.plugin-version>
+		<maven-failsafe-plugin-version>2.19.1</maven-failsafe-plugin-version>
+        <properties-maven-plugin-version>1.0.0</properties-maven-plugin-version>
 		<postgresql-version>9.1-901.jdbc4</postgresql-version>
 		<junit-version>4.12</junit-version>
 		<spring-version>4.2.1.RELEASE</spring-version>
 		<log4j-version>1.2.17</log4j-version>
-
 	</properties>
 
 	<dependencies>
@@ -88,7 +88,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>properties-maven-plugin</artifactId>
-						<version>1.0-alpha-2</version>
+						<version>1.0.0</version>
 						<executions>
 							<execution>
 								<phase>initialize</phase>
@@ -105,13 +105,16 @@
 					</plugin>
 
 					<plugin>
-						<groupId>org.jolokia</groupId>
+						<groupId>io.fabric8</groupId>
 						<artifactId>docker-maven-plugin</artifactId>
-						<version>${docker.maven.plugin.rhuss-version}</version>
+						<version>${io.fabric8.docker.maven.plugin-version}</version>
 						<configuration>
 							<images>
 								<image>
-									<name>weatherstation/postgres-it</name>
+									<name>${docker.dockerfile.postgresql}</name>
+                                    <build>
+                                        <dockerFile>${project.basedir}/src/test/resources/com/fabrefrederic/integrationTest/docker/postgresql/Dockerfile</dockerFile>
+                                    </build>
 									<run>
 										<!-- Assign dynamically mapped ports to maven variables (which can be reused in integration tests) -->
 										<ports>
