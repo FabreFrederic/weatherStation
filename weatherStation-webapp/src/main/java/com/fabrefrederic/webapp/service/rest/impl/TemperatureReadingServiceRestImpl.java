@@ -13,13 +13,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.net.ssl.SSLEngineResult;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Component
 public class TemperatureReadingServiceRestImpl implements TemperatureReadingServiceRest {
     private static final Logger LOGGER = Logger.getLogger(TemperatureReadingServiceRestImpl.class);
+    private static final String DATE_FORMAT = "yyyyMMdd";
 
     @Autowired
     @Qualifier("dozerBeanMapper")
@@ -39,11 +47,39 @@ public class TemperatureReadingServiceRestImpl implements TemperatureReadingServ
         try {
             lastTemperatureReadingDto = dozerBeanMapper.map(temperatureReading, TemperatureReadingDto.class);
         } catch (final MappingException mappingException) {
-            LOGGER.debug("Error while getting the last temperature reading", mappingException);
+            LOGGER.error("Error while mapping", mappingException);
             throw new WebApplicationException(mappingException, Response.Status.INTERNAL_SERVER_ERROR);
         }
         return lastTemperatureReadingDto;
     }
+
+    @Override
+    public List<TemperatureReadingDto> getTemperatureReadingByDay(final String dateString) {
+        final DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        Date date = null;
+        try {
+            date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        List<TemperatureReading> temperatureReadings = temperatureReadingService.getTemperatureReadingByDay(date);
+        List<TemperatureReadingDto> temperatureReadingDtos = new ArrayList<>();
+        TemperatureReadingDto newTemperatureReadingDto = null;
+
+        for (TemperatureReading temperatureReading : temperatureReadings) {
+            try {
+                newTemperatureReadingDto = dozerBeanMapper.map(temperatureReading, TemperatureReadingDto.class);
+            } catch (final MappingException mappingException) {
+                LOGGER.error("Error while mapping", mappingException);
+                throw new WebApplicationException(mappingException, Response.Status.INTERNAL_SERVER_ERROR);
+            }
+            if (newTemperatureReadingDto != null) {
+                temperatureReadingDtos.add(newTemperatureReadingDto);
+            }
+        }
+        return temperatureReadingDtos;
+    }
+
 
     @Override
     public Response saveTemperatureReading(final TemperatureReadingDto temperatureReadingDto) throws WebApplicationException {

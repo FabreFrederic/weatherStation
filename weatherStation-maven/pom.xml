@@ -1,89 +1,91 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.fabrefrederic</groupId>
-	<artifactId>weatherStation-maven</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>${project.artifactId}</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.fabrefrederic</groupId>
+    <artifactId>weatherStation-maven</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}</name>
 
-	<modules>
-		<module>../weatherStation-business</module>
-		<module>../weatherStation-business-dto</module>
-		<module>../weatherStation-dao</module>
-		<module>../weatherStation-service</module>
-		<module>../weatherStation-integrationTest</module>
-		<module>../weatherStation-webapp</module>
-	</modules>
+    <modules>
+        <module>../weatherStation-business</module>
+        <module>../weatherStation-business-dto</module>
+        <module>../weatherStation-dao</module>
+        <module>../weatherStation-service</module>
+        <module>../weatherStation-integrationTest</module>
+        <module>../weatherStation-webapp</module>
+    </modules>
 
-	<properties>
-		<my.build.directory>target</my.build.directory>
-		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+    <properties>
+        <my.build.directory>target</my.build.directory>
+        <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 
         <!--Version-->
-		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-		<hibernate-core-version>4.3.8.Final</hibernate-core-version>
-		<spring-version>4.2.4.RELEASE</spring-version>
-		<postgresql-version>9.1-901.jdbc4</postgresql-version>
-		<log4j-version>1.2.17</log4j-version>
-		<apache-commons-lang3-version>3.3.2</apache-commons-lang3-version>
-		<commons-io-version>2.4</commons-io-version>
-		<javax.servlet.jstl-version>1.2</javax.servlet.jstl-version>
-		<resteasy-version>3.0.14.Final</resteasy-version>
-		<jaxrs-api-version>3.0.12.Final</jaxrs-api-version>
-		<dozer-version>5.5.1</dozer-version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <hibernate-core-version>4.3.8.Final</hibernate-core-version>
+        <spring-version>4.2.4.RELEASE</spring-version>
+        <postgresql-version>9.1-901.jdbc4</postgresql-version>
+        <log4j-version>1.2.17</log4j-version>
+        <apache-commons-lang-version>2.6</apache-commons-lang-version>
+        <apache-commons-lang3-version>3.3.2</apache-commons-lang3-version>
+        <commons-io-version>2.4</commons-io-version>
+        <javax.servlet.jstl-version>1.2</javax.servlet.jstl-version>
+        <javax.servlet.api-version>2.5</javax.servlet.api-version>
+        <resteasy-version>3.0.14.Final</resteasy-version>
+        <jaxrs-api-version>3.0.12.Final</jaxrs-api-version>
+        <dozer-version>5.5.1</dozer-version>
         <!--Test-->
         <junit-version>4.8.2</junit-version>
         <mockito-all-version>1.10.19</mockito-all-version>
-	</properties>
+    </properties>
 
-	<build>
-		<directory>${my.build.directory}</directory>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>1.0-beta-2</version>
-				</plugin>
+    <build>
+        <directory>${my.build.directory}</directory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>1.0-beta-2</version>
+                </plugin>
 
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>${maven-compiler-plugin.version}</version>
-					<configuration>
-						<source>1.7</source>
-						<target>1.7</target>
-						<!--<showWarnings>true</showWarnings> -->
-						<!--<showDeprecation>true</showDeprecation> -->
-						<detail>true</detail>
-					</configuration>
-				</plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <!--<showWarnings>true</showWarnings> -->
+                        <!--<showDeprecation>true</showDeprecation> -->
+                        <detail>true</detail>
+                    </configuration>
+                </plugin>
 
-				<plugin>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.10</version>
-					<executions>
-						<execution>
-							<id>analyze</id>
-							<goals>
-								<goal>analyze-only</goal>
-							</goals>
-							<configuration>
-								<failOnWarning>true</failOnWarning>
-								<outputXML>true</outputXML>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                    <executions>
+                        <execution>
+                            <id>analyze</id>
+                            <goals>
+                                <goal>analyze-only</goal>
+                            </goals>
+                            <configuration>
+                                <failOnWarning>true</failOnWarning>
+                                <outputXML>true</outputXML>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
 
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>versions-maven-plugin</artifactId>
-					<version>2.1</version>
-					<configuration>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

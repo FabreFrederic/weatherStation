@@ -4,6 +4,9 @@ import com.fabrefrederic.business.TemperatureReading;
 import com.fabrefrederic.business.exception.SensorIsNotProvidedException;
 import com.fabrefrederic.business.exception.SensorNotFoundException;
 
+import java.util.Date;
+import java.util.List;
+
 public interface TemperatureReadingService {
 
     /**
@@ -12,6 +15,13 @@ public interface TemperatureReadingService {
      * @return the latest temperature reading
      */
     TemperatureReading getTheLastTemperatureReading();
+
+    /**
+     * Get the temperature reading of the passed date
+     *
+     * @return the temperature reading of the passed date
+     */
+    List<TemperatureReading> getTemperatureReadingByDay(final Date date);
 
     /**
      * Save a new temperature reading

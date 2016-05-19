@@ -13,6 +13,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/com/fabrefrederic/service/spring/applicationContext-service.xml",
         "classpath:/com/fabrefrederic/integrationTest/spring/applicationContext-dao-datasource.xml",
@@ -25,9 +31,6 @@ public class ITTemperatureReadingService {
     @Test
     @Transactional
     public void getTheLastTemperatureReading() {
-        // given
-        // final int numberOfCommits = 5;
-
         // when
         final TemperatureReading temperatureReading = temperatureReadingService.getTheLastTemperatureReading();
 
@@ -36,4 +39,26 @@ public class ITTemperatureReadingService {
         Assert.assertNotNull(temperatureReading.getTemperature());
     }
 
+    @Test
+    @Transactional
+    public void getTemperatureReadingByDay() {
+        // given
+        Date date = null;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String dateInString = "2015/10/20";
+
+        try {
+            date = formatter.parse(dateInString);
+        } catch (ParseException e) {
+            Assert.fail(e.getMessage());
+        }
+
+        // when
+        final List<TemperatureReading> temperatureReadings = temperatureReadingService.getTemperatureReadingByDay(date);
+
+        // then
+        Assert.assertNotNull(temperatureReadings);
+        Assert.assertTrue(temperatureReadings.size() > 0);
+        Assert.assertEquals(1, temperatureReadings.size());
+    }
 }

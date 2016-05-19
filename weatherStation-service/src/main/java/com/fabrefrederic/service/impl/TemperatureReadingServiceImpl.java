@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+import java.util.List;
+
 @Service
 public class TemperatureReadingServiceImpl implements TemperatureReadingService {
     @Autowired
@@ -21,6 +24,11 @@ public class TemperatureReadingServiceImpl implements TemperatureReadingService 
     @Override
     public TemperatureReading getTheLastTemperatureReading() {
         return temperatureReadingDao.getTheLastTemperatureReading();
+    }
+
+    @Override
+    public List<TemperatureReading> getTemperatureReadingByDay(Date date) {
+        return temperatureReadingDao.getTemperatureReadingByDay(date);
     }
 
     @Override
