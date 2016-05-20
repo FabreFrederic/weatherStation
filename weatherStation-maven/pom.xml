@@ -33,6 +33,7 @@
         <resteasy-version>3.0.14.Final</resteasy-version>
         <jaxrs-api-version>3.0.12.Final</jaxrs-api-version>
         <dozer-version>5.5.1</dozer-version>
+        <net.sf.ehcache-version>2.10.2</net.sf.ehcache-version>
         <!--Test-->
         <junit-version>4.8.2</junit-version>
         <mockito-all-version>1.10.19</mockito-all-version>
