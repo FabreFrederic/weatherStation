@@ -24,7 +24,16 @@
             <scope>test</scope>
             <version>${mockito-all-version}</version>
         </dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>${net.sf.ehcache-version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.fabrefrederic.weatherStation</groupId>
 			<artifactId>weatherStation-dao</artifactId>

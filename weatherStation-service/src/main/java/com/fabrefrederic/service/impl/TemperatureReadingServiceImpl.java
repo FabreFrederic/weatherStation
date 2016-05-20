@@ -8,6 +8,7 @@ import com.fabrefrederic.dao.SensorDao;
 import com.fabrefrederic.dao.TemperatureReadingDao;
 import com.fabrefrederic.service.TemperatureReadingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,11 +23,14 @@ public class TemperatureReadingServiceImpl implements TemperatureReadingService 
     private SensorDao sensorDao;
 
     @Override
+    @Cacheable(value="lastTemperatureReadingCache")
     public TemperatureReading getTheLastTemperatureReading() {
         return temperatureReadingDao.getTheLastTemperatureReading();
     }
 
     @Override
+    //@Cacheable(value="temperatureReadingByDayCache", key="#date")
+    @Cacheable(value="temperatureReadingByDayCache")
     public List<TemperatureReading> getTemperatureReadingByDay(Date date) {
         return temperatureReadingDao.getTemperatureReadingByDay(date);
     }
