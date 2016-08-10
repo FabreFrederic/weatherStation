@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from 'angular2/core';
-import {DatePipe} from 'angular2/common';
+import {Pipe, PipeTransform} from '@angular/core';
+import {DatePipe} from '@angular/common';
 
 @Pipe({ name: 'customDateStringPipe' })
 export class CustomDateStringPipe implements PipeTransform {

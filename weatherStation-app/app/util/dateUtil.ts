@@ -9,7 +9,7 @@ export class DateUtil {
             .replace("mm", padStr(date.getMinutes()))
             .replace("ss", padStr(date.getSeconds()));
 
-        function padStr(i) {
+        function padStr(i :number) {
             return (i < 10) ? "0" + i : "" + i;
         }
     }
