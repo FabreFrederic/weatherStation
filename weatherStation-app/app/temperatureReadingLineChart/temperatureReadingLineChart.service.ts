@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Rx';
 import { DateUtil } from '../util/dateUtil';
 
 @Injectable()
-export class TemperatureReadingListService {
+export class TemperatureReadingLineChartService {
     public http:Http;
     private endpoint:string =
         'http://localhost:8081/weatherStation-webapp/rest/temperatureReading/getTemperatureReadingByDay/';

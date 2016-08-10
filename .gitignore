@@ -1,1 +1,34 @@
+# Eclipse files
+*.class
+*.project
+.classpath
+.springBeans
+.settings/
+target/
+
+# Intellij files
+.idea/
+.intellij/
+intellij/
+*.iml
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#
+*~
+
+# Angular
+bower_components/
+node_modules/
+typings/
+*.js.map
+*.component.js*
+*.service.js*
+
+npm-debug.log
+
+# project
 /weatherStation-app/build

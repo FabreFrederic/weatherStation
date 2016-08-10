@@ -1,7 +1,8 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit } from '@angular/core';
 import { TemperatureReading } from './temperatureReading';
 import { TemperatureReadingListService } from './temperatureReadingList.service';
 import { CustomDateStringPipe } from '../pipe/customDateString.pipe';
+import {Http, Response} from '@angular/http';
 import 'rxjs/Rx';
 
 @Component({
