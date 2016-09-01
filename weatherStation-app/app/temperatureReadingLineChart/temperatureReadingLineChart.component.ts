@@ -30,7 +30,9 @@ import { CustomDateStringPipe } from '../pipe/customDateString.pipe';
 export class TemperatureReadingLineChartComponent implements OnInit {
     private temperatureReadings:Array<TemperatureReading> = [];
     public temperatureReadingLineChartError:Boolean = true;
+    private lineChartData:Array<any> = [];
 
+/**
     public lineChartData:Array<any> = [
         {
             data: [
@@ -79,9 +81,10 @@ export class TemperatureReadingLineChartComponent implements OnInit {
             label: 'Temperature'
         }
     ];
+**/
 
     private lineChartOptions:any = {
-        responsive: true,
+        maintainAspectRatio: true,
         scales: {
             xAxes: [{
                 type: "time",
@@ -107,12 +110,12 @@ export class TemperatureReadingLineChartComponent implements OnInit {
 
     private lineChartColours:Array<any> = [
         {
-          backgroundColor: 'rgba(77,83,96,0.2)',
-          borderColor: 'rgba(77,83,96,1)',
-          pointBackgroundColor: 'rgba(77,83,96,1)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(77,83,96,1)'
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)"
         }
       ];
 
@@ -120,10 +123,23 @@ export class TemperatureReadingLineChartComponent implements OnInit {
 
     ngOnInit() {
         this.getTemperatureReadingList();
-        for (let temperatureReading of this.temperatureReadings) {
-            console.error(temperatureReading.temperature);
-        }
 
+        let dataOnly:Array<any> = [];
+        let tempDate:Date;
+
+        for (let temp of this.temperatureReadings) {
+            let newDate:Date = new Date(temp.temperatureReading.date);
+
+            dataOnly.push({
+                x: newDate.getHours() + ":" + newDate.getMinutes(),
+                y: temp.temperatureReading.temperature
+            });
+        }
+        this.lineChartData.push({
+            data: dataOnly,
+            fill: true,
+            label: 'Temperature'
+        });
     }
 
     getTemperatureReadingList() {
