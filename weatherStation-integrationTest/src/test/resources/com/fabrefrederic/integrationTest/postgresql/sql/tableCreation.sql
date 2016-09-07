@@ -1,7 +1,7 @@
 create table temperature_reading (
     temperature_reading_id integer not null,
     temperature_reading_temperature double precision,
-    temperature_reading_date timestamp with time zone,
+    temperature_reading_date timestamp without time zone,
     temperature_reading_sensor_id integer,
     primary key (temperature_reading_id)
 );
@@ -14,7 +14,7 @@ ALTER TABLE temperature_reading OWNER TO docker;
 create table sensor (
     sensor_id integer not null,
     sensor_description varchar(255) unique,
-    sensor_creation_date timestamp with time zone,
+    sensor_creation_date timestamp without time zone,
     sensor_outdoor boolean,
     primary key (sensor_id)
 );
