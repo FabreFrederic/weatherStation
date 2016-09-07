@@ -25,6 +25,8 @@ Examples to test rest service :
 The tomcat has to be started and you must have data in the database 
 http://localhost:8081/weatherStation-webapp/rest/temperatureReading/getTheLastTemperatureReading
 http://localhost:8081/weatherStation-webapp/rest/temperatureReading/getTemperatureReadingByDay/20151022
-
+curl -i -X POST -H "Content-Type:application/json" \ 
+http://localhost:8081/weatherStation-webapp/rest/temperatureReading/saveTemperatureReading \
+-d '{"temperatureReading":{"date":"2015-10-22T12:15:00.000","temperature":24.8,"sensorId":1}}'
 
 
