@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/FabreFrederic/weatherStation.svg?branch=develop)](https://travis-ci.org/FabreFrederic/weatherStation)
+[![Stories in Ready](https://badge.waffle.io/FabreFrederic/weatherStation.svg?label=ready&title=Ready)](http://waffle.io/FabreFrederic/weatherStation)
+
 
 # weatherStation
 Weather Station allows you to save temperature reading.
