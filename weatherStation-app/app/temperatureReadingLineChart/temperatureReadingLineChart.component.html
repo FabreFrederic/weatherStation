@@ -1,9 +1,0 @@
-<section class="temperatureReadings" [ngClass]="{ 'loading': !lineChartData }">
-    <base-chart class="chart"
-                [datasets]="lineChartData"
-                [options]="lineChartOptions"
-                [colors]="lineChartColours"
-                [chartType]="lineChartType">
-    </base-chart>
-    <div *ngIf="temperatureReadingLineChartError">An error occurred while loading the temperature reading list</div>
-</section>

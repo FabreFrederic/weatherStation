@@ -1,0 +1,5 @@
+<div *ngIf="lastTemperatureReading">
+    <p>{{ lastTemperatureReading.temperatureReading.date | date:'medium' }}</p>
+    <p>Current temperature : {{lastTemperatureReading.temperatureReading.temperature}}°C</p>
+
+</div>
