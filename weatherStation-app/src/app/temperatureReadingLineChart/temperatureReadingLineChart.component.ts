@@ -32,8 +32,8 @@ export class TemperatureReadingLineChartComponent {
             (data) => {
                 data.forEach(
                     (dataset: any) => {
-                        let newDate: Date = new Date(dataset.temperatureReading.date);
-
+                        // Highcharts prefers dates in milliseconds
+                        let newDate = +new Date(dataset.temperatureReading.date)
                         formattedData.push({
                             x: newDate,
                             y: dataset.temperatureReading.temperature
@@ -44,6 +44,23 @@ export class TemperatureReadingLineChartComponent {
                 console.log('formattedData : ' + formattedData);
 
                 this.options = {
+                    chart: {
+                        type: 'spline',
+                        marginTop: 10
+                      },
+                    xAxis: {
+                        type : 'datetime',
+                        title : {
+                          text : ''
+                        },
+                        tickInterval : 300000
+                      },
+                      yAxis : {
+                        title : {
+                          text : ''
+                        },
+                        min: 0
+                    },
                     rangeSelector: {
                         buttons: [{
                             type: 'min',
@@ -62,7 +79,7 @@ export class TemperatureReadingLineChartComponent {
                         inputEnabled: true
                     },                    
                     series : [{
-                        name : 'AAPL',
+                        name : 'temperature',
                         data: formattedData,
                         type: 'area',
                         gapSize: 1,                   
